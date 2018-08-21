@@ -18,11 +18,24 @@ body {
     max-height: 50%;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
+    perspective: 1000px;
 }
 
 .memory-card {
     position: relative;
     margin: 1vw;
+    transform: scale(1);
+    transform-style: preserve-3d;
+    transition: transform .5s;
+}
+
+.memory-card:active {
+    transform: scale(.97);
+    transition: transform .2s
+}
+
+.memory-card.flip {
+    transform: rotateY(180deg);
 }
 
 .front-face, .back-face {
@@ -31,4 +44,9 @@ body {
     padding: 10px;
     position: absolute;
     box-shadow: 1px 2px 4px rgba(0, 0, 0, .5);
+    backface-visibility: hidden;
+}
+
+.front-face {
+    transform: rotateY(180deg);
 }
